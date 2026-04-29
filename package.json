@@ -1,0 +1,64 @@
+{
+  "name": "cnpjaberto",
+  "version": "0.1.0",
+  "description": "SDK em TypeScript e servidor MCP para o cnpjaberto.com.br, cadastro aberto de empresas brasileiras (CNPJ).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp.d.ts",
+      "import": "./dist/mcp.js"
+    }
+  },
+  "bin": {
+    "cnpjaberto-mcp": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepack": "npm run build",
+    "test:smoke": "node --enable-source-maps dist/examples/basic.js"
+  },
+  "keywords": [
+    "cnpj",
+    "brasil",
+    "receita-federal",
+    "mcp",
+    "claude",
+    "model-context-protocol",
+    "sdk"
+  ],
+  "author": "CNPJ Aberto <contato@cnpjaberto.com.br>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnpjaberto/cnpjaberto-js.git"
+  },
+  "homepage": "https://cnpjaberto.github.io/cnpjaberto-js/",
+  "bugs": {
+    "url": "https://github.com/cnpjaberto/cnpjaberto-js/issues"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
