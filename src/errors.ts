@@ -1,31 +1,19 @@
 export class CnpjAbertoError extends Error {
-  status?: number;
-  payload?: unknown;
-  constructor(message: string, status?: number, payload?: unknown) {
+  constructor(
+    message: string,
+    public readonly status?: number,
+    public readonly payload?: unknown,
+    public readonly retryAfter?: string,
+  ) {
     super(message);
-    this.name = "CnpjAbertoError";
-    this.status = status;
-    this.payload = payload;
+    this.name = new.target.name;
   }
 }
-
-export class AuthError extends CnpjAbertoError {
-  constructor(message: string, status?: number, payload?: unknown) {
-    super(message, status, payload);
-    this.name = "AuthError";
-  }
-}
-
-export class NotFoundError extends CnpjAbertoError {
-  constructor(message: string, status?: number, payload?: unknown) {
-    super(message, status, payload);
-    this.name = "NotFoundError";
-  }
-}
-
-export class RateLimitError extends CnpjAbertoError {
-  constructor(message: string, status?: number, payload?: unknown) {
-    super(message, status, payload);
-    this.name = "RateLimitError";
-  }
-}
+export class AuthError extends CnpjAbertoError {}
+/** A 403 remains an AuthError for compatibility with existing consumers. */
+export class ForbiddenError extends AuthError {}
+export class NotFoundError extends CnpjAbertoError {}
+export class RateLimitError extends CnpjAbertoError {}
+export class ValidationError extends CnpjAbertoError {}
+export class TimeoutError extends CnpjAbertoError {}
+export class TransportError extends CnpjAbertoError {}

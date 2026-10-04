@@ -1,6 +1,6 @@
 {
   "name": "cnpjaberto",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SDK em TypeScript e servidor MCP para o cnpjaberto.com.br, cadastro aberto de empresas brasileiras (CNPJ).",
   "type": "module",
   "main": "./dist/index.js",
@@ -26,7 +26,11 @@
   "scripts": {
     "build": "tsc",
     "prepack": "npm run build",
-    "test:smoke": "node --enable-source-maps dist/examples/basic.js"
+    "test:smoke": "npm run build && node examples/basic.mjs",
+    "test": "npm run build && npm run test:types && node --test test/*.test.mjs",
+    "test:types": "tsc -p tsconfig.test.json",
+    "format": "prettier --write \"src/**/*.ts\" \"test/*.{ts,mjs}\" \"examples/*.{ts,mjs,json}\" README.md \"tsconfig*.json\" package.json \".github/workflows/*.yml\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/*.{ts,mjs}\" \"examples/*.{ts,mjs,json}\" README.md \"tsconfig*.json\" package.json \".github/workflows/*.yml\""
   },
   "keywords": [
     "cnpj",
@@ -48,13 +52,15 @@
     "url": "https://github.com/cnpjaberto/cnpjaberto-js/issues"
   },
   "engines": {
-    "node": ">=18.17"
+    "node": ">=20"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.4"
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "prettier": "^3.9.9",
     "typescript": "^5.7.0"
   },
   "publishConfig": {

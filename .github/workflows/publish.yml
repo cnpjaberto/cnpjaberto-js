@@ -25,8 +25,8 @@ jobs:
       - name: Instala dependências
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Valida SDK e MCP
+        run: npm test
 
       - name: Publica com provenance OIDC
         run: npm publish --provenance --access public

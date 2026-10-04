@@ -3,7 +3,7 @@
   "mcpServers": {
     "cnpjaberto": {
       "command": "npx",
-      "args": ["-y", "cnpjaberto"],
+      "args": ["-y", "--package", "cnpjaberto", "cnpjaberto-mcp"],
       "env": {
         "CNPJABERTO_API_KEY": "sua_chave_aqui"
       }
